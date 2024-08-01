@@ -5,7 +5,7 @@
 
 ## 演示
 
-[!]](https://github.com/qhthem/theme/blob/main/public/uploads/admin.png)
+[![]((https://github.com/qhthem/theme/blob/main/public/uploads/admin.png))](https://www.thinkphp.cn/sponsor/special)
 
 [!]](https://github.com/qhthem/theme/blob/main/public/uploads/index.png)
 
