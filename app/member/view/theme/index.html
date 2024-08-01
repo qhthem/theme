@@ -1,0 +1,55 @@
+{qh:include "member","header"}
+<main class="container mt-3" id="app">
+  {qh:include "member","container"}
+
+<div class="user-center row gutters-10">
+    {qh:include "member","left"}
+    <div class="user-center-content col-sm-9 drawer-sm right">
+        <div class="row gutters-10 Modal" data-modal='{"key":"Recharge"}' id="Modal-Recharge">
+            <Model :show="showModal" :name="NameModal" @close="val=>showModal = val"></Model>
+    <div class="col-sm-6">
+        <div class="qh-widget relative" style="padding-left: 24px;padding: 15px;">
+            <div class="flex jsb">
+                <div class="mb6">
+                    余额</div>
+            </div>
+            <div class="flex jsb ac">
+                <div class="mb6 c-blue-2">￥
+                    <span class="em3x font-bold ml6">{$amount}</span></div>
+                <div class="flex0">
+                    <a  class="transfer-link but c-blue-2 mr6 hollow em14" href="javascript:;">转账</a>
+                    <a @click="openModal('R_moeny')" class="balance-charge-link but c-yellow-2 em14" href="javascript:;">充值</a></div>
+            </div>
+            <div class="muted-2-color em09">
+                <span>待开发</span></div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="qh-widget relative" style="padding-left: 24px;padding: 12px;">
+            <div class="flex jsb">
+                <div class="mb6">
+                    积分</div>
+                
+            </div>
+            <div class="flex jsb ac">
+                <div class="mb6 c-green">
+                    <i class="ri-copper-diamond-line"></i>
+                    <span class="em3x font-bold ml6">{$point}</span></div>
+                <div class="flex0">
+                    <a class="transfer-link but c-green mr6 hollow em14" href="javascript:;" @click="openModal('transfer_point')">转账</a>
+                    <a @click="openModal('R_point')" class="points-pay-link but c-green em14" href="javascript:;">购买积分</a></div>
+            </div>
+            <div class="muted-2-color em09">
+                <span>积分板块</span></div>
+        </div>
+        
+</div>
+    
+</div>
+<div class="qh-widget Userinfo" data-info='{"key":"record-page"}' id="userinfo-record-page" style="padding: 16px;">
+    <Record_limit></Record_limit>
+</div>
+</div>
+</div>
+</main>
+{qh:include "member","footer"}

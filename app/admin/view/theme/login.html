@@ -1,0 +1,100 @@
+{qh:include "admin","js_cs"}
+<link href="{STATIC_URL}/css/login.css?v={rand(100,1000)}" rel="stylesheet">
+<div id="app">
+    <n-message-provider>
+<div class="account-root">
+    <div class="account-root-item root-left-item">
+        <div class="">
+            <div class="root-left-logo">
+                
+                <div class="stand-title">Astro Admin</div></div>
+            <div class="root-left-title">开箱即用，中后台前端/设计解决方案</div>
+            <div class="root-left-desc">多生态支持、功能丰富、高颜值模板</div>
+            <div class="coding-img">
+                <img src="{STATIC_URL}images/Fingerprint-bro.svg"></div>
+        </div>
+    </div>
+    <div class="account-root-item root-right-item">
+        <div class="account-form">
+            <div class="account-top">
+                <div class="user-account">登录你的账户</div>
+            </div>
+             <n-form ref="formData" :model="formData" :rules="rules">
+                 
+            <n-form-item path="account" label="账户">
+              <n-input v-model:value="formData.account" placeholder="请输入账号" clearable></n-input>
+            </n-form-item>
+            
+            <n-form-item path="password" label="密码">
+              <n-input type="password" show-password-on="mousedown" v-model:value="formData.password" placeholder="请输入密码" clearable></n-input>
+            </n-form-item>
+            
+            <n-form-item path="code" label="验证码">
+                <n-input v-model:value="formData.code" placeholder="请输入验证码" clearable></n-input>
+            </n-form-item>
+            <img width="110" src="{captcha_img()}" onclick="this.src=this.src+'{rand(10,20)}'">
+            
+            <n-form-item>
+                <n-button class="with100" :loading="loading" type="primary" @click="onSubmit('formData')">登录</n-button>
+            </n-form-item>
+            </n-form>
+            
+             <n-divider>版权信息</n-divider>
+            <div class="pb-8">
+
+            </div>
+        </div>
+    </div>
+</div>
+</n-message-provider>
+ </div>
+
+<script>
+const { createDiscreteApi } = naive
+const { message } = createDiscreteApi(['message'])
+const login = Vue.createApp({
+   data() {
+       return {
+            formData: { account: 'admin', password: '123456', code: ''},
+            rules: {
+                account: [{ required: true, message: '请输入登录用户名', trigger: 'blur' }],
+                password: [{ required: true, message: '请输入登录密码', trigger: 'blur' }],
+                code: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
+            },
+            loading: false,
+            verifySrc: '{captcha_img()}',
+        };
+    },
+    methods: {
+        onSubmit(e) {
+            this.$refs[e].validate((valid) => {
+                if (!valid){
+                    this.submit(this.formData,'{url('login')}');
+                }
+                else {
+                    return false;
+                }
+            })
+        },
+        submit(data, url) {
+            this.loading = true;
+            axios.post(url, data)
+                .then(res => {
+                    if (res.data.status === 200) {
+                       message.success(res.data.msg, { onLeave: () => { location.href = res.data.url; } });
+                       this.loading = false;
+                    } else {
+                        this.loading = false;
+                        message.error(res.data.msg);
+                    }
+                })
+                .catch(() => {
+                    this.loading = false;
+             });
+        }
+    },
+});
+
+login.use(naive);
+login.mount('#app');
+</script>

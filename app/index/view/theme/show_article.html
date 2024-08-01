@@ -1,0 +1,144 @@
+{qh:include "index","header"}
+{php $userinfos = get_userinfo(get_cookie('_userid'))}
+<link href="{STATIC_URL}them/css/prism.css?ver={rand(100,500)}" rel="stylesheet">
+<main class="app Modal" data-modal='{"key":"article"}' id="Modal-article">
+   <div class="article-footer">
+    <div class="qh-flex">
+        <side 
+        :params="{'id':{$id},'modelid':{$modelid},'catid':{$catid},'like':{$likes},'favorite':0,'comment':{get_comment_total($id,$modelid)}}"></side>
+    </div>
+   </div>
+    <section class="container home-item qh-radius mt-4">
+        <div class="row">
+            <div class="col-sm-9">
+            <article class="single-article qh-radius box">
+                <Model :show="showModal" 
+                :name="NameModal" @close="val=>showModal = val" 
+                :params="{'userid':{$userid},'nickname':'{get_userinfo($userid,'nickname')}'}"></Model>
+                <div class="article-header">
+                    <h1>{$title}</h1>
+                    <div class="post-meta">
+                        <div class="post-meta-row qh-flex">
+                            <div class="left qh-flex">
+                                <span class="post-date qh-flex">
+                                    <i class="ri-time-line"></i>
+                                    <time class="qh-timeago">{date('Y-m-d H:i:s',$inputtime)}</time></span>
+                                <span class="post-views qh-flex">
+                                    <i class="ri-eye-line"></i>{$click}</span>
+                            </div>
+                            <div class="right">
+                                <ul class="post-categories qh-flex">
+                                    <li>
+                                        <a href="{get_category($catid,'pclink')}" rel="category tag">{get_category($catid,'catname')}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="post-user-info qh-flex">
+                            <div class="left qh-flex">
+                                <div class="user-avatar">
+                                    <img src="{get_avatar($userid)}" class="avatar-face w-h"></div>
+                                <div class="user-info">
+                                    <div class="user-info-name">
+                                        <a style="margin-right: 0;" target="_blank" href="/user/{$userid}" class="user-name no-hover">{$userinfos['nickname']}</a>
+                                        <span class="user-lv">
+                                            <img src="{get_userlv($userid)}" class="lv-img-icon"></span>
+                                    </div>
+                                    <div class="desc text-ellipsis">
+                                        {if $userinfos['motto']} {$userinfos['motto']}{else}这个人很懒什么都没有留下{/if}</div></div>
+                            </div>
+                            <div class="right qh-flex">
+                                <user_follow :clask="'follow qh-flex'" :status="{is_follow(get_cookie('_userid'),$userid)}" :userid="{$userid}"></user_follow>
+                                
+                                <button class="letter qh-flex" @click="openModal('user_msg')">
+                                    <i class="ri-chat-3-line"></i>私信</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-content">
+                    {$content}
+                </div>
+                <div class="post-tags qh-flex">
+                    <i class="ri-price-tag-3-line"></i>
+                    {qh:centent_tag modelid="$modelid" id="$id" limit="10"}
+                    {loop $data $v}
+                    <a class="tag-item qh-radius qh-flex" href="#">
+                        <span class="tag-text">{$v[tag]}</span></a>
+                    {/loop}
+                </div>
+            </article>
+            <div class="post-prev-next mt-3">
+                {qh:adjacent field="title,url" catid="$catid" id="$id" modelid="$modelid"}
+                {loop $data['pre'] $v}
+               <div class="post-prev box qh-radius">
+                    <p>
+                        <i class="ri-arrow-left-s-line"></i>上一篇</p>
+                    <a href="{$v['url']}" title="{$v['title']}">
+                        <div class="title text-ellipsis">{$v['title']}</div></a>
+                </div>
+                {/loop} 
+                {loop $data['next'] $v}
+                <div class="post-next box qh-radius">
+                    <p>下一篇
+                        <i class="ri-arrow-right-s-line"></i></p>
+                    <a href="{$v['url']}" title="{$v['title']}">
+                        <div class="title text-ellipsis">{$v['title']}</div></a>
+                </div>
+                {/loop} 
+            </div>
+            
+            <div class="comments-hred widget-title mt-3">评论（{get_comment_total($id,$modelid)}）</div>
+             <comment_list :params="{'sid':{$id},'modelid':{$modelid},'userpic':'{get_avatar(get_cookie('_userid'))}'}"></comment_list>
+            </div>
+            
+            <div class="col-sm-3 widget pd0">
+            <main class="widget-box-s">
+              <section class="widget-box qh-radius box mb-2">
+                <div class="author-widget">
+                    <div class="author-widget-content">
+                        <div class="author-cover" style="background-image: url(/static/them/images/home_bg.png);">
+                            <div class="bg-cover"></div>
+                        </div>
+                        <div class="author-info">
+                            <div class="user-avatar">
+                                <img src="{get_avatar($userid)}" class="avatar-face w-h"></div>
+                            <div class="author-name">{$userinfos['nickname']}</div>
+                            <div class="author-desc">
+                                {if $userinfos['motto']} {$userinfos['motto']}{else}这个人很懒什么都没有留下{/if}</div>
+                        </div>
+                    </div>
+                    <div class="author-widget-footer">
+                        <user_follow :clask="'follow qh-flex'" :status="{is_follow(get_cookie('_userid'),$userid)}" :userid="{$userid}"></user_follow>
+                        <button class="letter qh-flex"  @click="openModal('user_msg')">
+                            <i class="ri-chat-3-line"></i>私信</button>
+                    </div>
+                </div>
+            </section>
+              <section class="widget-box qh-radius box">
+                <h2 class="widget-title">文章排行</h2>
+                <div class="post-widget">
+                     <ul class="widget-post-list">
+                        {qh:hits field="title,url,click" catid="$catid" limit="10" day="10"}
+                        {loop $data $k=>$v}
+                        {php $k=$k+1;}
+                        <li class="widget-post widget-post-none">
+                            <div class="title"> 
+                                <span class="post-index">{$k}</span>
+                                <a class="link" href="{$v['url']}" title="{$v['title']}">{$v['title']}</a>
+                            </div>
+                            <span class="views">{$v['click']}</span>
+                        </li>
+                     {/loop}
+                    </ul>
+                  </div>
+                </section>
+            </main>        
+            </div>
+          </div>
+    </section>
+</main>
+<script src="{STATIC_URL}them/js/fancybox.umd.js"></script>
+<link rel="stylesheet" href="{STATIC_URL}them/css/fancybox.css"/>
+
+<script type="text/javascript" src="{STATIC_URL}them/js/prism.js"></script>
+{qh:include "index","footer"}   

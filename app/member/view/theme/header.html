@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{$nickname} - {if get_cookie('_userid')}个人会员中心{else}个人主页{/if}</title>
+        <meta name="description" content="个人会员中心">
+        <link href="{STATIC_URL}them/css/Bootstrap.min.css" rel="stylesheet">
+        <link href="{STATIC_URL}them/css/remixicon.css" rel="stylesheet">
+        <link href="{STATIC_URL}them/css/mian.min.css" rel="stylesheet">
+        <link href="{STATIC_URL}them/css/member.css?ver={rand(100,500)}" rel="stylesheet">
+        <script type="text/javascript" src="{STATIC_URL}them/js/jquery.min.js"></script>
+        <script type="text/javascript" src="{STATIC_URL}/js/vue.global.js"></script>
+        <script type="text/javascript" src="{STATIC_URL}/js/axios.min.js"></script>
+        <link href="{STATIC_URL}them/css/mobile.css?ver={rand(100,500)}" rel="stylesheet">
+    </head>
+    
+    <body>
+        <div class="page-wrap home-page">
+            <header {if !get_cookie( '_userid')}class="Modal" data-modal='{"key":"login"}' id="Modal-login" {/if}>
+                <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+                    <div class="container-fluid">
+                        <a class="navbar-brand me-5 d-flex align-items-center" href="/">
+                            <img src="{site('site_logo')}" style="height: 32px;"></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav gap-2 mb-2 mb-lg-0 me-auto">{qh:nav field="catid,catname,pclink,target,arrchildid" where="parentid=0" limit="20"} {loop $data $v} {php $r = get_childid($v['catid'],$v['arrchildid']);}
+                                <li class="nav-item {if !empty($r)}dropdown{/if}">
+                                    <a {if empty($r)}href="{$v['pclink']}"{/if} class="nav-link {if !empty($r)}dropdown-toggle{/if}" {if !empty($r)}role="button" data-bs-toggle="dropdown" {/if}>{$v['catname']}</a>{if !empty($r)}
+                                    <ul class="dropdown-menu qh-dropdown-menu">{loop $r $v}
+                                        <li>
+                                            <a class="dropdown-item" href="{$v['pclink']}">{$v['catname']}</a></li>{/loop}</ul>{/if}</li>{/loop}</ul>
+                            <form class="me-4" action="{url('index/search/index')}">
+                                <input type="hidden" name="modelid" value="1">
+                                <input class="form-control" required="" type="search" name="keyword" placeholder="搜索"></form>{if get_cookie('_userid')} {php $userinfo = is_userinfo()}
+                                {php $userinfos = get_userinfo($userinfo['_userid'])}
+                            <div class="dropdown d-none d-lg-block">
+                                <a href="#" class="nav-link dropdown-toggle d-flex align-items-center pe-0" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img class="rounded-circle" width="30" height="30" src="{get_avatar($userinfo['_userid'])}"></a>
+                                <div class="user-menu-content pd16 drop-down-menu light-shadow dropdown-menu dropdown-menu-end">
+                                    <div class="user-info-item qh-flex">
+                                        <div class="user-info qh-flex" style="margin-bottom: 0;">
+                                            <a href="{url('member/index/index')}">
+                                                <div class="user-avatar">
+                                                    <img src="{get_avatar($userinfo['_userid'])}" class="avatar-face w-h"></div>
+                                            </a>
+                                            <div class="user-name">
+                                                <div class="user-info-name">
+                                                    <a target="_blank" href="{url('member/index/index')}" class="user-name no-hover">{$userinfo['_nickname']}</a>
+                                                    <span class="user-lv">
+                                                        <img src="{get_userlv($userinfo['_userid'])}" class="lv-img-icon"></span>
+                                                </div>
+                                                <div class="desc text-ellipsis">{if $userinfos['motto']} {$userinfos['motto']}{else}这个人很懒什么都没有留下{/if}</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="user-assets-item pd0">
+                                        <div class="user-assets qh-flex">
+                                            <a href="{url('member/index/index')}" class="user-money-card background_border">
+                                                <div class="user-assets-name">余额
+                                                    <i class="ri-arrow-right-s-line"></i></div>
+                                                <div class="user-assets-num">{$userinfos['amount']}</div>
+                                                <div class="assets-icon" style="background-image: url(/static/them/images/ammount.jpg);"></div>
+                                            </a>
+                                            <a href="{url('member/index/index')}" class="user-credit-card background_border">
+                                                <div class="user-assets-name">积分
+                                                    <i class="ri-arrow-right-s-line"></i></div>
+                                                <div class="user-assets-num">{$userinfos['point']}</div>
+                                                <div class="assets-icon" style="background-image: url(/static/them/images/point.jpg);"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="links-item">
+                                        <a href="{url('member/index/index')}" rel="nofollow" class="link-item qh-flex">
+                                            <div class="link-title qh-flex">
+                                                <i class="ri-user-line"></i>
+                                                <span>个人中心</span></div>
+                                            <i class="ri-arrow-right-s-line"></i>
+                                        </a>
+                                        <a href="{url('member/index/post')}" rel="nofollow" class="link-item qh-flex">
+                                            <div class="link-title qh-flex">
+                                                <i class="ri-draft-line"></i>
+                                                <span>投稿管理</span></div>
+                                            <i class="ri-arrow-right-s-line"></i>
+                                        </a>
+                                        <a href="{url('member/index/settings')}" rel="nofollow" class="link-item qh-flex">
+                                            <div class="link-title qh-flex">
+                                                <i class="ri-user-settings-line"></i>
+                                                <span>账号设置</span></div>
+                                            <i class="ri-arrow-right-s-line"></i>
+                                        </a>
+                                    </div>
+                                    <div class="split-line"></div>
+                                    <a href="{url('member/index/exit')}" class="logout-item qh-flex">
+                                        <i class="ri-logout-circle-r-line"></i>
+                                        <span>退出登录</span></a>
+                                </div>
+                            </div>{else}
+                            <button @click="openModal('login')" class="btn btn-primary">立即登录</button>{/if}</div></div>
+                </nav>
+                <Model :show="showModal" :name="NameModal" @close="val=>showModal = val"></Model>
+            </header>

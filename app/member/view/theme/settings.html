@@ -1,0 +1,13 @@
+{qh:include "member","header"}
+<main class="container mt-3" id="app">
+    {qh:include "member","container"}
+    <div class="user-center row gutters-10">
+        {qh:include "member","left"}
+        <div class="user-center-content col-sm-9 drawer-sm right">
+            <div data-info='{"key":"setting"}' id="userinfo-setting" class="author-edit-page box qh-radius Userinfo">
+             <user_setting></user_setting>
+        </div>   
+         </div>
+    </div>
+</main>
+{qh:include "member","footer"}

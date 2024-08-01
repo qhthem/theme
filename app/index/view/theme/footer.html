@@ -1,0 +1,37 @@
+<footer class="footer box">
+    <div class="container">
+        <div class="wrapper">
+            <div class="footer-nav">
+                <ul class="footer-links">
+                    <li>友情链接：</li>
+                    {qh:link field="url,logo,name" limit="20"}
+                    {loop $data $v}
+                    <li><a href="{$v[url]}" target="_blank">{$v[name]}</a></li> 
+                    {/loop}
+                </ul>
+                <ul class="footer-links">
+                    <li>合作伙伴：</li>
+                    <li>
+                        <a target="_blank" href="https://baidu.com">百度</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-left"><a class="mr6">{site('site_copyright')}</a>
+                    <a class="mr6" target="__blank" href="https://beian.miit.gov.cn">{site('site_filing')}</a>
+                    <a class="mr6" target="__blank" href="https://beian.mps.gov.cn/">
+                        <img class="logos" src="/static/images/logo01.6189a29f.png">{site('site_security_number')}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+<script src="{STATIC_URL}them/js/Bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="{STATIC_URL}them/js/template.js?ver={rand(1,10)}"></script>
+<script type="text/javascript" charset="utf-8" src="{STATIC_URL}them/js/messages.js?ver={rand(1,10)}"></script>
+<script type="text/javascript" charset="utf-8" src="{STATIC_URL}them/js/packery.pkgd.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="{STATIC_URL}them/js/lazyload.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="{STATIC_URL}them/js/main.js?ver={rand(1,10)}"></script>
+</body>
+
+</html>

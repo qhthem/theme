@@ -1,0 +1,43 @@
+{qh:include "index","header"}
+<main class="app" id="app">
+<section class="container mt-4 post-list" id="post-item-side"
+data-param = '{"key":"side","style":2,"limit":9,"modelid":{$modelid},"catid":{$catid},"keyword":"{$s}"}'>
+<div class="row">
+<div class="col-sm-9">
+<div class="search-page-title mg-b box radius4"><h2>文章</h2><p>文章标签 [ <span class="red">{$s}</span>] 的搜索结果</p></div>
+<div class="hidden-line post-item-3">
+    <ul class="qh-grid "></ul>
+</div>
+<pagination :total-items="total" :items-per-page="limit" @page="val=>getList('','',val)"></pagination>
+</div>    
+<div class="col-sm-3 widget pd0">
+<div class="widget-box box qh-radius">
+    <h2 class="widget-title">此为小图样式，可自定义宽度</h2>
+    <div class="post-widget">
+        <ul class="widget-post-list">
+            {qh:hits field="title,url,thumb,inputtime,click" limit="6" day="10"}
+            {loop $data $v}
+            <li class="widget-post widget-post-small">
+                <div class="widget-post-thumb">
+                    <a ref="nofollow" class="link" href="{$v['url']}" title="{$v['title']}">
+                        <img class="qh-radius w-h lazyload" data-src="{get_thumb($v['thumb'])}" src="{get_thumb($v['thumb'])}" alt="{$v['title']}"></a>
+                </div>
+                <div class="widget-post-info">
+                    <div class="title">
+                        <a class="text-ellipsis" href="{$v['url']}" title="{$v['title']}">
+                            <h2>{$v['title']}</h2></a>
+                    </div>
+                    <div class="meta">
+                        <time class="qh-timeago">{time_ago($v['inputtime'])}</time>
+                        <span class="views">{$v['click']} 浏览</span></div>
+                </div>
+            </li>
+            {/loop}
+        </ul>
+    </div>
+</div>
+</div>
+</div>
+</section>    
+</main>
+{qh:include "index","footer"}

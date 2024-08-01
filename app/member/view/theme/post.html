@@ -1,0 +1,47 @@
+{qh:include "member","header"}
+<main class="container mt-3" id="app">
+    {qh:include "member","container"}
+    <div class="user-center row gutters-10">
+        {qh:include "member","left"}
+        <div class="user-center-content col-sm-9 right account-page-right">
+            <div class="post-page">
+                <div class="post-data">
+                    <div class="section-title">稿件数据</div>
+                    <div class="post-data-list">
+                        <div class="item-card">
+                            <div class="name">总数</div>
+                            <div class="num">{$content_total}</div></div>
+                        <div class="item-card">
+                            <div class="name">评论</div>
+                            <div class="num">{$comment_total}</div></div>
+                        <div class="item-card">
+                            <div class="name">收藏</div>
+                            <div class="num">{$favorite_total}</div></div>
+                     </div>
+                </div>
+                <div class="post-manage" style="height: 100%; flex: 1 1 0%;">
+                    <div id="tabs" class="tabs">
+                        <ul class="tabs-nav">
+                            {loop $model $v}
+                            <li class="">{$v['name']}</li>
+                            {/loop}
+                        </ul>
+                        <div class="tabs-content">
+                            
+                        </div>
+                    </div>
+                    <div class="qk-pagenav json-nav">
+                        <div class="qk-ajax-pager" style="display: none;">
+                            <div class="ajax-pagination">
+                                <button type="button" disabled="disabled" class="btn-prev">❮</button>
+                                <ul class="qk-pager">
+                                    <li disabled="disabled" class="number active">1</li></ul>
+                                <button type="button" disabled="disabled" class="btn-prev">❯</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{qh:include "member","footer"}

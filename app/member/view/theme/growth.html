@@ -1,0 +1,43 @@
+{qh:include "member","header"}
+<main class="container mt-3" id="app">
+    {qh:include "member","container"}
+    <div class="user-center row gutters-10">
+        {qh:include "member","left"}
+        <div class="user-center-content col-sm-9 drawer-sm right">
+            <div class="row gutters-10">
+                <div class="col-sm-5">
+                <div class="user-level-card qh-flex box qh-radius">
+               <div class="level-exp">
+                    <div class="level-icon">
+                        <img src="{get_userlv($userid)}" class="w-h"></div>
+                    <div class="level-exp-progress-bar mt-3">
+                        <div class="exp-progress-bar" style="width: {$percentage}%;"></div>
+                    </div>
+                    <div class="level-exp-info qh-flex">
+                        <span>{$experience} / {$user_exp}</span>
+                        <span>升级还需要{$upgrade}经验</span></div>
+                    
+                </div>
+            </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="user-level-points box qh-radius flex">
+                     {loop $growth $k=>$v}
+                     {php $k=$k*5;}
+                    <div class="level-item">
+                    <div class="level-exp">{$v['experience']}</div>
+                    <div class="level-bar" style="height:{$k}px"></div>
+                    <div class="level-icon">
+                        <img src="{$v['icon']}" class="w-h"></div>
+                </div>{/loop}
+                </div>
+                
+            </div></div>
+            <div class="growth-content box qh-radius mt-3 Userinfo" data-info='{"key":"growth-list"}' id="userinfo-growth-list">
+                <growth_list></growth_list>
+            </div>            
+            
+         </div>
+    </div>
+</main>
+{qh:include "member","footer"}

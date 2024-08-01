@@ -1,0 +1,32 @@
+<div class="author-header mb-2 qh-radius bg-white">
+    <div class="page-cover">
+        <img class="fit-cover" src="/static/them/images/task_bg.jpg">
+        <div class="absolute linear-mask"></div>
+    </div>
+    <div class="header-content">
+        <div class="qh-flex header-info relative hh">
+            <div class="flex0 header-avatar">
+                <div class="hover-show relative Userinfo"  data-info='{"key":"userpic"}' id="userinfo-userpic">
+                    <span class="avatar-img">
+                        <img src="{get_avatar($userid)}" class="avatar avatar-img-member"></span>
+                    <user_userpic></user_userpic>
+                </div>
+            </div>
+            <div class="flex1">
+                <div class="em12 name">
+                    <span class="display-name">{$nickname}
+                        <img class="img-icon ml3 ls-is-cached lazyloaded" src="{get_userlv($userid)}"></span></div>
+                <div class="desc user-identity qh-flex ac hh">
+                    
+                    <span class="but">
+                        <i class="ri-user-3-line"></i>{$username}</span>
+                    <span class="but">
+                        <i class="ri-mail-line"></i>{$email}</span>
+                </div>
+            </div>
+            <div class="header-btns flex0 flex ac Userinfo" data-info='{"key":"sign"}' id="userinfo-sign">
+                <user_sign :status="'{$sign}'"></user_sign>
+            </div>
+        </div>
+    </div>
+</div>

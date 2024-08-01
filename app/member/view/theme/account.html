@@ -1,0 +1,74 @@
+{qh:include "member","header"}
+<main class="container mt-3">
+    {qh:include "member","container"}
+    <div class="user-center row gutters-10">
+        {qh:include "member","left"}
+        <div class="user-center-content col-sm-9 drawer-sm right account-page-right">
+            <div class="secure-page right-wrap">
+            <div class="secure-header">
+                <div class="secure-info">
+                    <span class="secure-shield">{$security}</span>
+                    <span class="secure-desc no-risk">{$riskLevel}</span>
+                    <p class="secure-suggest">为了更好的保障您账号的安全，请您继续完善</p>
+                </div>
+            </div>
+            <div class="secure-content Modal" data-modal='{"key":"account"}' id="Modal-account">
+                <Model :show="showModal" :name="NameModal" @close="val=>showModal = val"></Model>
+                <div class="section-title">账号设置</div>
+                <div class="secure-setting-list">
+                    <ul>
+                        <li class="setting-item">
+                            <div class="left">
+                                <div class="title">密码</div>
+                                <div class="desc">安全性高的密码可以使帐号更安全</div></div>
+                            <div class="right" @click="openModal('account_password')">修改密码</div></li>
+                        <li class="setting-item">
+                            <div class="left">
+                                <div class="title">邮箱</div>
+                                <div class="desc">{$email}</div></div>
+                            <div class="right" @click="openModal('account_email')">更换邮箱</div></li>
+                        <li class="setting-item">
+                            <div class="left">
+                                <div class="title">手机</div>
+                                <div class="desc">{if $phone}{$phone}{else}您还没有绑定手机{/if}</div></div>
+                            <div class="right" @click="openModal('account_phone')">绑定手机</div></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="secure-account-binding">
+                <div class="section-title">社交账号绑定</div>
+                <div class="secure-setting-list">
+                    <ul>
+                        <li class="setting-item">
+                            <div class="left">
+                                <div class="title">QQ</div>
+                                <div class="desc">{if $openid}{$openid}{else}你还没有绑定{/if}</div></div>
+                            <div class="right">
+                                <span>{if $openid}
+                                <a href="{url('member/api/unbind',['type'=>'qq'])}">解绑</a>
+                                {else}<a href="{url('member/api/bind',['type'=>'qq'])}">绑定</a>{/if}</span></div>
+                        </li>
+                        <li class="setting-item">
+                            <div class="left">
+                                <div class="title">微博</div>
+                                <div class="desc">待开发</div></div>
+                            <div class="right">
+                                <span>绑定</span></div>
+                        </li>
+                        <li class="setting-item">
+                            <div class="left">
+                                <div class="title">微信</div>
+                                <div class="desc">待开发</div></div>
+                            <div class="right">
+                                <span>绑定</span></div>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</main>
+{qh:include "member","footer"}

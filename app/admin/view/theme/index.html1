@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{qh:include "admin","js_cs"}
+<link href="{STATIC_URL}/css/mian.css?v={rand(100,1000)}" rel="stylesheet">
+<script>
+    const admin = '{$admin}';
+    const qh_token = '{$token}';
+    axios.defaults.headers.common['qh-token'] = qh_token;
+</script>
+<div id="app">
+<layout></layout>
+</div>
+{qh:include "admin","footer"}
+</body>
+</html>

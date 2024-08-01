@@ -1,0 +1,87 @@
+{qh:include "member","header"}
+<main class="container" id="app">
+<div class="author">
+    <div class="author-header Modal" data-modal='{"key":"home"}' id="Modal-home">
+        <Model :show="showModal" :name="NameModal" @close="val=>showModal = val" :params="{'userid':{$userid},'nickname':'{$nickname}'}"></Model>
+        <div class="mask-wrapper" style="border-radius: 8px;">
+            <div class="wrapper qh-home">
+                <div class="author-container">
+                    <div class="avatar-bg"></div>
+                    <div class="author-info">
+                        <div class="author-profile">
+                            <div class="left">
+                                <div class="user-avatar">
+                                    <img src="{get_avatar($userid)}" class="avatar-face w-h"></div>
+                            </div>
+                            <div class="right">
+                                <div class="user-info">
+                                    <div class="user-info-name">
+                                        <a  class="user-name no-hover">{$nickname}</a>
+                                        <span class="user-lv">
+                                            <img src="{get_userlv($userid)}" class="lv-img-icon"></span>
+                                    </div>
+                                    
+                                </div>
+                                <div class="statistics">
+                                    <a href="JavaScript:;">
+                                        <span class="text">关注</span>
+                                        <span class="num">{$follow_total}</span></a>
+                                    <a href="JavaScript:;">
+                                        <span class="text">粉丝</span>
+                                        <span class="num">{$fans_total}</span></a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="author-profile-bottom">
+                            <div class="left-desc">
+                                <div class="list">
+                                    <div class="tag-item">
+                                        <i class="ri-map-pin-fill"></i>
+                                        <span class="text">IP属地：待开发</span></div>
+                                </div>
+                                <div class="desc text-ellipsis">{if $motto}{$motto}{else}这个人很懒什么都没有留下{/if}</div></div>
+                            <div class="flex ac">
+                                
+                                {if $userid != get_cookie('_userid')}
+                                <button class="but c-yellow-2" @click="openModal('user_msg')">
+                                    <i class="ri-message-3-line"></i>
+                                    私信</button>
+                                
+                                <user_follow :clask="'but ml10 c-blue-2'" :status="{$is_follow}" :userid="{$userid}"></user_follow>
+                                {else}
+                                <a rel="nofollow" href="/member" class="but c-blue radius50">
+                                    <i class="ri-user-3-line"></i>
+                                    个人中心</a>
+                                {/if}
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="author-container-mask"></div>
+        </div>
+    </div>
+   
+    <div class="author-body wrapper container post-list done" id="post-item-user" 
+    data-param = '{"key":"user","style":2,"limit":10,"modelid":1,"userid":{$userid}}' style="padding: 0 24px;">
+        <div class="author-tabsbar box">
+            <div class="tab-links">
+                {loop $model $v}
+                <a href="JavaScript:;" @click="getList('','','',{$v['modelid']})" class="active">
+                   <span class="text">{$v['name']}</span></a>
+                {/loop}   
+            </div>
+            </div>
+        
+        <div class="author-page-content">
+            <div class="author-page-left">
+                <ul class="qh-grid "></ul>
+            </div>
+            <pagination :total-items="total" :items-per-page="limit" @page="val=>getList('','',val)"></pagination>
+            </div>
+            
+      </div>
+</div>    
+</main>
+{qh:include "member","footer"}

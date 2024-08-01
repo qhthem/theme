@@ -1,0 +1,97 @@
+{qh:include "index","header"}
+<main class="app" id="app">
+<section class="container home-item qh-radius mt-4">
+ <div class="slider-container slider_1">
+        <div class="slider-body">
+            <div class="main-carousel carousel" 
+            data-flickity='{"wrapAround":true,"fullscreen":true,"autoPlay":3000,"imagesLoaded":true,"prevNextButtons":false,"pageDots":true,"resize":false}'>
+                {qh:banner field="title,image,url,type,status" limit="10"}
+                {loop $data $v} 
+                <a href="{$v[url]}" class="carousel-cell">
+                    <img class="slider-img w-h qh-radius" src="{$v[image]}" alt="{$v[title]}" title="{$v[title]}">
+                </a>
+                {/loop}
+            </div>
+            <div class="carousel-footer">
+                <div class="carousel-tool"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container home-item mt-4 post-list" id="post-item-qh" data-param = '{"key":"qh","style":2,"limit":8,"modelid":1,"catid":1}'>
+<div class="qh-modules-top">
+    <div class="qh-module-top-wrapper">
+        <div class="qh-module-info qh-flex">
+            <h2 class="qh-module-title">
+                <text class="qh-color">网格</text>模式</h2>
+            <div class="qh-module-action qh-flex">
+                <div class="button" @click="exchange">
+                    <i class="ri-refresh-line"></i>
+                    <span>换一换</span></div>
+            </div>
+        </div>
+   </div>
+</div>    
+<div class="hidden-line post-item-4 post-1">
+   <ul class="qh-grid"></ul>
+</div>
+<div class="qh-modules-bottom load-more" v-cloak>
+    <span v-if="locked">加载中...</span>
+    <span v-else-if="noMore">没有更多了</span>
+    <span @click.stop.self="loadMore()" v-else>加载更多
+        <i class="ri-arrow-right-s-line"></i></span>
+</div>
+</section>
+
+<section class="container home-item mt-4 post-list post-2" id="post-item-side" data-param = '{"key":"side","style":1,"limit":4,"modelid":1,"catid":2}'>
+<div class="row">
+<div class="col-sm-9">
+<div class="qh-modules-top">
+    <div class="qh-module-top-wrapper">
+        <div class="qh-module-info qh-flex">
+            <h2 class="qh-module-title">
+                <text class="qh-color">列表</text>模式</h2>
+            <div class="qh-module-action qh-flex">
+                <div class="button" @click="exchange">
+                    <i class="ri-refresh-line"></i>
+                    <span>换一换</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hidden-line post-item-2">
+    <ul class="qh-grid"></ul>
+</div>
+</div>    
+<div class="col-sm-3 widget pd0">
+<div class="widget-box box qh-radius">
+    <h2 class="widget-title">此为小图样式，可自定义宽度</h2>
+    <div class="post-widget">
+        <ul class="widget-post-list">
+            {qh:hits field="title,url,thumb,inputtime,click" limit="4" day="10"}
+            {loop $data $v}
+            <li class="widget-post widget-post-small">
+                <div class="widget-post-thumb">
+                    <a ref="nofollow" class="link" href="{$v['url']}" title="{$v['title']}">
+                        <img class="qh-radius w-h lazyload" data-src="{get_thumb($v['thumb'])}" src="{get_thumb($v['thumb'])}" alt="{$v['title']}"></a>
+                </div>
+                <div class="widget-post-info">
+                    <div class="title">
+                        <a class="text-ellipsis" href="{$v['url']}" title="{$v['title']}">
+                            <h2>{$v['title']}</h2></a>
+                    </div>
+                    <div class="meta">
+                        <time class="qh-timeago">{time_ago($v['inputtime'])}</time>
+                        <span class="views">{$v['click']} 浏览</span></div>
+                </div>
+            </li>
+            {/loop}
+        </ul>
+    </div>
+</div>
+</div>
+</div>
+</section>
+{qh:include "index","box_waterfall"}
+ </main>       
+{qh:include "index","footer"}

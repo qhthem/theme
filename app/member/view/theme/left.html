@@ -1,0 +1,66 @@
+<div class="col-sm-3">
+        
+    <div class="counts-item qh-flex">
+        <a class="single-count-item" href="{$user_url}">
+            <div class="count-num">{$content_total}</div>
+            <div class="count-text">动态</div></a>
+        <a class="single-count-item" href="{$user_url}">
+            <div class="count-num">{$comment_total}</div>
+            <div class="count-text">评论</div></a>
+        <a class="single-count-item" href="{$user_url}">
+            <div class="count-num">{$favorite_total}</div>
+            <div class="count-text">收藏</div></a>
+        <a class="single-count-item" href="{$user_url}">
+            <div class="count-num">{$follow_total}</div>
+            <div class="count-text">关注</div></a>
+        <a class="single-count-item" href="{$user_url}">
+            <div class="count-num">{$fans_total}</div>
+            <div class="count-text">粉丝</div></a>
+    </div>        
+       <div class="user-assets-item">
+            <div class="title">我的钱包</div>
+            <div class="user-assets qh-flex">
+                <a href="{url('index')}" class="user-money-card">
+                    <div class="user-assets-name">余额
+                        <i class="ri-arrow-right-s-line"></i></div>
+                    <div class="user-assets-num">{$amount}</div></a>
+                <a href="{url('index')}" class="user-credit-card">
+                    <div class="user-assets-name">积分
+                        <i class="ri-arrow-right-s-line"></i></div>
+                    <div class="user-assets-num">{$point}</div></a>
+            </div>
+        </div>
+        <div class="qh-panel">
+            <a href="{url('growth')}" class="panel-item {if GetRoute('action') == 'growth'}active{/if}">
+                <i class="ri-pulse-line"></i>
+                <div>我的等级</div></a>
+            <a href="{url('write')}" class="panel-item {if GetRoute('action') == 'write'}active{/if}">
+                <i class="ri-draft-line"></i>
+                <div>发布文章</div></a>
+            <a href="{url('order')}" class="panel-item {if GetRoute('action') == 'order'}active{/if}">
+                <i class="ri-file-list-3-line"></i>
+                <div>我的订单</div></a>
+            <a href="{url('vip')}" class="panel-item {if GetRoute('action') == 'vip'}active{/if}">
+                <i class="ri-vip-crown-2-line"></i>
+                <div>会员中心</div></a>
+        </div>      
+        <div class="qh-panel">
+            <a href="{url('member/messages/index')}" class="panel-item">
+                {if !empty($message_total)}
+                <span class="position-absolute translate-middle badge rounded-pill bg-danger">
+                    {$message_total}
+                    <span class="visually-hidden">unread messages</span>
+                  </span>{/if}
+                <i class="ri-message-3-line"></i>
+                <div>消息通知</div></a>
+            <a href="{url('settings')}" class="panel-item {if GetRoute('action') == 'settings'}active{/if}">
+                 <i class="ri-user-settings-line"></i>
+                <div>个人资料</div></a>
+            <a href="{url('account')}" class="panel-item {if GetRoute('action') == 'account'}active{/if}">
+                <i class="ri-shield-check-line"></i>
+                <div>账户安全</div></a>
+            
+        </div> 
+        
+        
+    </div>
