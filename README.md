@@ -5,8 +5,8 @@
 
 ## 演示
 
-[![](https://github.com/qhthem/theme/blob/main/public/uploads/admin.png)]
-[![](https://github.com/qhthem/theme/blob/main/public/uploads/index.png)]
+[![](https://github.com/qhthem/theme/blob/main/public/uploads/admin.png)](http://www.php.net/)
+[![](https://github.com/qhthem/theme/blob/main/public/uploads/index.png)](http://www.php.net/)
 
 ## 主要特性
 
