@@ -5,8 +5,8 @@
 
 ## 演示
 
-[![](https://github.com/qhthem/theme/blob/main/public/uploads/admin.png)](http://www.php.net/)
-[![](https://github.com/qhthem/theme/blob/main/public/uploads/index.png)](http://www.php.net/)
+[![](https://github.com/qhthem/theme/blob/main/public/uploads/admin.png)](https://www.astrocms.cn/)
+[![](https://github.com/qhthem/theme/blob/main/public/uploads/index.png)](https://www.astrocms.cn/)
 
 ## 主要特性
 
