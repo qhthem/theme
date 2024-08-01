@@ -5,7 +5,7 @@
 
 ## 演示
 
-[![](https://github.com/qhthem/theme/blob/main/public/uploads/admin.png)]
+[![4](https://github.com/qhthem/theme/blob/main/public/uploads/admin.png)]
 [![](https://github.com/qhthem/theme/blob/main/public/uploads/index.png)]
 
 ## 主要特性
