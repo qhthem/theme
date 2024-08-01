@@ -5,9 +5,9 @@
 
 ## 演示
 
-(https://github.com/qhthem/Astro/public/uploads/admin.png)]
+[![](https://github.com/qhthem/Astro/public/uploads/admin.png)]
 
-(https://github.com/qhthem/Astropublic/uploads/index.png)]
+[![](https://github.com/qhthem/Astropublic/uploads/index.png)]
 
 
 ## 主要特性
