@@ -26,7 +26,11 @@ class Upload
         $time = !empty($params['time']) ? $params['time'] : null;
         
         $where = [];
-        $where['userid'] = !empty(get_cookie('_userid')) ? get_cookie('_userid'):null;
+        if(Router()->formatAppnName() == admin_map('admin')){
+            $where['userid'] = null;
+        }else{
+            $where['userid'] = !empty(get_cookie('_userid')) ? get_cookie('_userid'):null;
+        }
         if(!empty($params['time'])){
             $where['uploadtime'] = ['between', [$time[0], $time[1]]];
         }
