@@ -606,7 +606,6 @@ CREATE TABLE `qh_group_auth` (
 
 LOCK TABLES `qh_group_auth` WRITE;
 /*!40000 ALTER TABLE `qh_group_auth` DISABLE KEYS */;
-INSERT INTO `qh_group_auth` VALUES (1,'权限名称'),(2,'组别权限');
 /*!40000 ALTER TABLE `qh_group_auth` ENABLE KEYS */;
 UNLOCK TABLES;
 
