@@ -147,7 +147,7 @@ class Index
         cache_type()->set('install_progress', ['progress' => (int) $percentage, 'title' => '完成']);
         cache_type()->delCache('install_progress');
 
-        env(null,$params,null,'create');
+        env('',null,'create',$params);
         @touch(app()::getConfigPath() . 'install.lock');
         return ['status' => 200, 'msg' => '安装成功！'];
     }
