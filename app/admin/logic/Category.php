@@ -64,7 +64,7 @@ class Category
             db('category')->where(['catid' => $catid])->update($pclink);
         }
         
-        self::Repairsection($params['parentid']);
+        self::Repairsection(empty($params['parentid']) ? 0 :$params['parentid']);
     
         return ['status' => 200, 'msg' => '栏目添加成功'];
     }
