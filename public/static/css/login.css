@@ -1,200 +1,120 @@
-body {
-    overflow: auto!important;
+.pd0 {
+    padding: 0 !important;
 }
-.account-root {
-    box-sizing: border-box;
-    display: flex;
-    flex-flow: row wrap;
-    width: 100%;
-    height: 100vh
+.h-100vh {
+    height: 99.99vh;
 }
-
-@media (min-width: 600px) {
-    .account-root-item {
-        flex-basis:100%;
-        flex-grow: 0;
-        max-width: 100%
-    }
-}
-
-@media (min-width: 320px) {
-    .account-root .root-right-item .account-form {
-        flex-basis:60%;
-        flex-grow: 0;
-        max-width: 60%
-    }
-}
-
-@media (min-width: 1200px) {
-    .account-root-item {
-        flex-basis:40%;
-        flex-grow: 0;
-        max-width: 40%
-    }
-
-    .account-root .root-right-item {
-        flex-basis: 60%;
-        flex-grow: 0;
-        max-width: 60%
-    }
-
-    .account-root .root-right-item .account-form {
-        flex-basis: 32%;
-        flex-grow: 0;
-        max-width: 32%
-    }
-}
-
-.account-root-item {
-    box-sizing: border-box;
-    margin: 0;
-    flex-direction: row;
-    flex-grow: 0;
-    background: #2d8cf0
-}
-
-.account-root-item-img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%
-}
-
-.account-root-item-img img {
-    width: 70%;
-    display: inline-block;
-    margin: 0 auto
-}
-
-.account-root .root-left-item {
-    width: 780px;
-    display: flex;
-    align-items: center;
-    padding: 20px 0;
-    justify-content: center;
-    background: linear-gradient(140.02deg,#f9f9fa,#f7f8ff)
-}
-
-.account-root .root-left-item .root-left-logo {
+.login-content {
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center
+    width: 1080px;
+    height: 80vh;
 }
+.content-img {
+    width: 600px;
+    border-radius: 20px 0 0 20px;
+    background-color: #f5f5f5;
+    overflow: hidden;
+    border-right: 1px solid #f5f5f5;
+}
+.content-img .bg {
+    object-fit: cover;
+}
+.content-img .name {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: #fff;
+    font-size: 12px;
+    text-shadow: 0 0 6px rgba(0, 0, 0, .6);
+}
+.content-box{
+    width: 420px;
+    padding: 40px 80px;
+    border-radius: 0 20px 20px 0;
+ }
 
-.account-root .root-left-item .root-left-logo .stand-title {
+.content-box .login-title {
     font-size: 28px;
-    line-height: 1.25;
     font-weight: 600;
-    background: linear-gradient(92.06deg, #b4d5ff -17.9%, #18a058 43.39%, #18a058 99.4%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent
 }
-
-.account-root .root-left-item .root-left-logo img {
-    width: 35px;
-    height: 35px;
-    margin-right: 5px
+.content-box .login-title2 {
+    color: #444;
+    font-size: 12px;
+    padding: 6px 0 40px;
 }
-
-.account-root .root-left-item .root-left-title {
-    height: 80px;
-    margin: 0 auto;
-    font-weight: 600;
-    font-size: 1.5rem;
-    line-height: 80px;
-    color: #333;
-    text-align: center
+.content-box .input-box {
+    margin: 15px auto;
+    width: 100%;
+    justify-content: space-between;
 }
-
-.account-root .root-left-item .root-left-desc {
-    height: 34px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    line-height: 34px;
-    text-align: center;
-    color: #666
-}
-
-.account-root .root-right-item {
-    flex: 1 1;
+.login-table {
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    height: 16px;
+    padding: 0 4px;
+    font-size: 12px;
+    font-weight: 450;
     background: #fff;
-    box-sizing: border-box;
-    flex-flow: row wrap;
-    display: flex;
-    justify-content: center;
-    align-items: center
+    color: #000;
 }
-
-.account-root .root-right-item .account-form {
-    width: 348px
+.input-box .login-input {
+    padding: 0 20px;
+    height: 50px;
+    border-radius: 50px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #f5f5f5;
+    transition: .3s;
+    position: relative;
 }
-
-.account-root .root-right-item .account-form .account-top {
-    text-align: left;
-    margin: 20px 0
+.login-input input {
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
-
-.account-root .root-right-item .account-form .account-top .user-account {
-    font-family: SourceHanSansCN_Bold;
-    color: #333;
-    font-size: 1.5rem;
+.login-btn {
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    border: 2px solid #f5f5f5;
+    cursor: pointer;
+}
+.login-tips {
+    margin: 55px 0 15px;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    color: #999;
+}
+.other-login {
+    gap: 32px;
+    margin-top: 12px;
+}
+.other-login > a {
+    width: 32px;
+    height: 32px;
     line-height: 30px;
-    margin-bottom: 5px
+    border-radius: 50px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #f5f5f5;
+    text-align: center;
 }
-
-.account-root .root-right-item .account-form .account-top .user-register span {
-    opacity: .7;
-    margin-right: 10px
+.login-footer{
+    margin: 0 auto;
+    padding: 40px 0 0;
+    width: 80%; 
+    min-width: 1080px;
 }
-
-.account-root .root-right-item .account-form .account-tabs {
-    background-color: #f3f7fb;
-    border-radius: 10px;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    width: -moz-fit-content;
-    width: fit-content;
-    margin-bottom: 26px;
-    margin-top: 30px
-}
-
-.account-root .root-right-item .account-form .account-tabs-item {
-    opacity: .7;
-    padding: 5px 10px;
-    font-weight: 400
-}
-
-.account-root .root-right-item .account-form .account-tabs-item:hover {
-    cursor: pointer
-}
-
-.account-root .root-right-item .account-form .account-tabs .on-item {
-    background-color: #fff;
-    opacity: 1;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px #171c2724
-}
-
-.account-root .root-right-item .account-form .qrcodes-login .qrcodes-img {
-    width: 192px;
-    height: 192px;
-    display: inline-block
-}
-
-.account-root .root-right-item .account-form .qrcodes-login p {
-    width: 192px;
-    opacity: .7;
-    padding-top: 10px;
-    text-align: center
-}
-
-.rests-login-type {
-    opacity: .5
-}
-
-.coding-img {
-    width: 70%;
-    margin: 50px auto 20px
+.login-footer div{
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    line-height: 20px;
 }
