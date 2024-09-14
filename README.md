@@ -14,7 +14,7 @@
 
 ## 安装
 
-直接下载，上传到web根目录下，记得安装框架即可
+直接下载，上传到web根目录下,然后回到网站列表，点击设置->其他设置->Composer->点击执行
 
 [QHPHP](https://github.com/qhthem/framework.git)
 
