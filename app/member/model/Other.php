@@ -9,8 +9,9 @@
 // | Author: ZHAOSONG <1716892803@qq.com>
 // +----------------------------------------------------------------------
 namespace app\member\model;
-use extend\phpmailer\PHPMailer;
-use extend\phpmailer\Exception;
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class Other
 {
